@@ -1,0 +1,141 @@
+/* Custom styles */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* Navigation */
+.nav-link {
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #93c5fd;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Demo Section */
+#upload-container {
+    min-height: 300px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#upload-container:hover {
+    border-color: #3b82f6;
+    background-color: #f8fafc;
+}
+
+#preview-container {
+    min-height: 300px;
+    background-color: #f8fafc;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Unblur reveal animation for the processed image */
+@keyframes unblur {
+    0%   { filter: blur(10px) contrast(0.9) saturate(0.9); opacity: 0.2; }
+    60%  { filter: blur(3px) contrast(1.05) saturate(1.05); opacity: 0.85; }
+    100% { filter: blur(0) contrast(1) saturate(1); opacity: 1; }
+}
+
+.unblur-animate {
+    animation: unblur 900ms ease-out forwards;
+}
+
+/* Pulsing blur during processing on the preview image */
+@keyframes pulse-blur {
+    0%   { filter: blur(2px) brightness(0.98); }
+    50%  { filter: blur(5px) brightness(1.02); }
+    100% { filter: blur(2px) brightness(0.98); }
+}
+
+.pre-unblur {
+    animation: pulse-blur 900ms ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    #upload-container, #preview-container {
+        min-height: 250px;
+    }
+}
+
+/* Loading animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
